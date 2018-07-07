@@ -1,8 +1,10 @@
 package jp.ac.titech.itpro.sdl.aojshoujinmanager.AOJData;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class SubmitInfo {
+@SuppressWarnings("serial")
+public class SubmitInfo implements Serializable{
     public int runID;
     public String userID;
     public String problemID;

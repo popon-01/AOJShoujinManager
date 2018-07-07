@@ -1,6 +1,7 @@
 package jp.ac.titech.itpro.sdl.aojshoujinmanager.AOJRequest;
 
 import android.support.annotation.Nullable;
+import android.util.Log;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -22,40 +23,40 @@ public class ProblemRequest extends AOJRequest {
     private ProblemInfo parseProblem() throws IOException, XmlPullParserException {
         ProblemInfo res = new ProblemInfo();
 
-        consumeStartDoc();
-        consumeStartTag("problem");
+        parser.nextStartTag("problem");
 
-        if(xpp.getEventType() == XmlPullParser.END_TAG &&
-                xpp.getName().equals("problem")){
-            consumeEndTag("problem");
-            consumeEndDoc();
+        parser.nextTag();
+        if(parser.isEndTag()) {
+            parser.require(XmlPullParser.END_TAG, null, "problem");
+            parser.assertEndDocument();
             return null;
         }
 
-        res.problemID= consumeTextTag("id");
-        res.problemName = consumeTextTag("name");
-        consumeTextTag("available");
-        res.memoryLimit = Integer.parseInt(consumeTextTag("problemtimelimit"));
-        res.timeLimit = Integer.parseInt(consumeTextTag("problemmemorylimit"));
-        parseStatus();
+        parser.requireStartTag("id");
+        res.problemID= parser.nextText();
 
-        consumeEndTag("problem");
-        consumeEndDoc();
+        res.problemName = parser.nextTextTag("name");
+        parser.nextTextTag("available");
+        res.memoryLimit = Integer.parseInt(parser.nextTextTag("problemtimelimit"));
+        res.timeLimit = Integer.parseInt(parser.nextTextTag("problemmemorylimit"));
+
+        parser.nextStartTag("status");
+        parseStatus();
+        parser.nextEndTag("status");
+
+        parser.nextEndTag("problem");
+        parser.assertEndDocument();
         return res;
     }
 
     void parseStatus() throws IOException, XmlPullParserException {
-        consumeStartTag("status");
-
-        consumeTextTag("submission");
-        consumeTextTag("accepted");
-        consumeTextTag("wronganswer");
-        consumeTextTag("timelimit");
-        consumeTextTag("memorylimit");
-        consumeTextTag("outputlimit");
-        consumeTextTag("runtimeerror");
-
-        consumeEndTag("status");
+        parser.nextTextTag("submission");
+        parser.nextTextTag("accepted");
+        parser.nextTextTag("wronganswer");
+        parser.nextTextTag("timelimit");
+        parser.nextTextTag("memorylimit");
+        parser.nextTextTag("outputlimit");
+        parser.nextTextTag("runtimeerror");
     }
 
     @Nullable
@@ -64,7 +65,7 @@ public class ProblemRequest extends AOJRequest {
         try {
             String urlString =
                     "http://judge.u-aizu.ac.jp/onlinejudge/webservice/problem?status=false"
-                    + String.format("&user_id=%s", URLEncoder.encode(problemID, "UTF-8"));
+                    + String.format("&id=%s", URLEncoder.encode(problemID, "UTF-8"));
             setParser(new URL(urlString));
             res = parseProblem();
         } catch (Exception e) {
