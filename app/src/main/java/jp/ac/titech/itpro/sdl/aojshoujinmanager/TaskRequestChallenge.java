@@ -1,7 +1,5 @@
 package jp.ac.titech.itpro.sdl.aojshoujinmanager;
 
-import android.app.Dialog;
-import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -18,10 +16,10 @@ import jp.ac.titech.itpro.sdl.aojshoujinmanager.AOJRequest.ProblemRequest;
 import jp.ac.titech.itpro.sdl.aojshoujinmanager.AOJRequest.SubmitLogRequest;
 
 public class TaskRequestChallenge extends AsyncTask<Void, ChallengeInfo, Void> {
-    private WeakReference<MainActivity> activityRef;
+    private WeakReference<SubmitListActivity> activityRef;
     private String userID;
 
-    TaskRequestChallenge(MainActivity activity, String userID) {
+    TaskRequestChallenge(SubmitListActivity activity, String userID) {
         activityRef = new WeakReference<>(activity);
         this.userID = userID;
     }
@@ -75,7 +73,7 @@ public class TaskRequestChallenge extends AsyncTask<Void, ChallengeInfo, Void> {
 
     @Override
     protected void onProgressUpdate(ChallengeInfo... challenges){
-        MainActivity activity = activityRef.get();
+        SubmitListActivity activity = activityRef.get();
         ChallengeInfo challenge = challenges[0];
         if (activity == null || activity.isFinishing() || challenge == null)
             return;
