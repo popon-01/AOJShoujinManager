@@ -2,4 +2,13 @@
     <string name="app_name">AOJShoujinManager</string>
     <string name="label_submit_problems">Submit Problems</string>
     <string name="label_submits">Submits</string>
+    <string name="key_problem">Problem : </string>
+    <string name="key_date">Date : </string>
+    <string name="key_language">Language : </string>
+    <string name="key_status">Status : </string>
+    <string name="key_cpu_time">CPU Time : </string>
+    <string name="key_memory">Memory : </string>
+    <string name="key_code_size">Code Size : </string>
+    <string name="key_detail_url">Detail : </string>
+    <string name="key_problem_url">Problem URL : </string>
 </resources>

@@ -8,7 +8,8 @@ public class SubmitInfo implements Serializable{
     public int runID;
     public String userID;
     public String problemID;
-    public Date submissionDate;
+    public Long submissionDate;
+    public String submissionDateString;
     public String status;
     public String statusShort;
     public String language;

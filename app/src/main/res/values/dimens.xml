@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="submit_table_key_weight">2</dimen>
+    <dimen name="submit_table_value_weight">3</dimen>
+</resources>
