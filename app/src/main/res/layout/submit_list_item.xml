@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="4dp" >
+
+    <TextView
+        android:id="@+id/submitDate"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="3"
+        android:text="yyyy-MM-dd HH:mm:ss"
+        android:textSize="24dp" />
+
+    <TextView
+        android:id="@+id/submitLanguage"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="3"
+        android:text="JavaScript"
+        android:textSize="24dp" />
+
+    <TextView
+        android:id="@+id/submitStatus"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:text="TLE"
+        android:textSize="24dp" />
+
+</LinearLayout>

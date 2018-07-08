@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ProblemSubmitActivity">
+
+    <TextView
+        android:id="@+id/problemTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ID:TITLE"
+        android:textSize="32sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginVertical="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/problemTitle">
+
+        <TextView
+            android:id="@+id/problemTimeLimit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Time Limit : 8sec"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/problemMemoryLimit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Memory Limit : 131072 KB"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/problemURL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autoLink="web"
+            android:text="URL : example.com"
+            android:textSize="20sp" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/submitLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/label_submits"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+
+    <ListView
+        android:id="@+id/submitList"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        app:layout_constraintTop_toBottomOf="@id/submitLabel" />
+
+
+</android.support.constraint.ConstraintLayout>

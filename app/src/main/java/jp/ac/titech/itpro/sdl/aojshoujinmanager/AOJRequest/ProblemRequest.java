@@ -37,8 +37,8 @@ public class ProblemRequest extends AOJRequest {
 
         res.problemName = parser.nextTextTag("name");
         parser.nextTextTag("available");
-        res.memoryLimit = Integer.parseInt(parser.nextTextTag("problemtimelimit"));
-        res.timeLimit = Integer.parseInt(parser.nextTextTag("problemmemorylimit"));
+        res.timeLimit = Integer.parseInt(parser.nextTextTag("problemtimelimit"));
+        res.memoryLimit = Integer.parseInt(parser.nextTextTag("problemmemorylimit"));
 
         parser.nextStartTag("status");
         parseStatus();

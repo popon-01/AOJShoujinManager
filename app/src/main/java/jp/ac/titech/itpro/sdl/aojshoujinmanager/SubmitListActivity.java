@@ -1,6 +1,7 @@
 package jp.ac.titech.itpro.sdl.aojshoujinmanager;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -32,7 +33,7 @@ public class SubmitListActivity extends AppCompatActivity {
 
         this.challengeList = new ArrayList<>();
 
-        ListView listView = findViewById(R.id.solvedProblemList);
+        ListView listView = findViewById(R.id.submitProblemList);
         this.listAdapter = new SolvedProblemListAdapter(this,0,
                 new ArrayList<ChallengeInfo>());
         listView.setAdapter(listAdapter);
@@ -42,11 +43,9 @@ public class SubmitListActivity extends AppCompatActivity {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int pos, long id) {
                         ChallengeInfo challenge = challengeList.get(pos);
-                        /*
-                        Intent intent = new Intent(getApplication(), ImprudentTweetActivity.class);
-                        intent.putExtra("phrase", phraseBody);
+                        Intent intent = new Intent(getApplication(), ProblemSubmitActivity.class);
+                        intent.putExtra(ProblemSubmitActivity.EXTRA_CHALLENGE, challenge);
                         startActivity(intent);
-                        */
                     }
                 };
         listView.setOnItemClickListener(clickListener);
