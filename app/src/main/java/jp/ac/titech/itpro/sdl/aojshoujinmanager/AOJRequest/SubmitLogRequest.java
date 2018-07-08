@@ -11,9 +11,11 @@ import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 
 import jp.ac.titech.itpro.sdl.aojshoujinmanager.AOJData.SubmitInfo;
 
@@ -62,12 +64,15 @@ public class SubmitLogRequest extends AOJRequest{
 
     private SubmitInfo parseStatus() throws IOException, XmlPullParserException {
         SubmitInfo res = new SubmitInfo();
+        SimpleDateFormat sdf =
+                new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US);
+
 
         res.runID = Integer.parseInt(parser.nextTextTag("run_id"));
         res.userID = parser.nextTextTag("user_id");
         res.problemID = parser.nextTextTag("problem_id");
-        res.submissionDate =
-                new Date(Long.parseLong(parser.nextTextTag("submission_date")));
+        res.submissionDate = Long.parseLong(parser.nextTextTag("submission_date"));
+        res.submissionDateString = sdf.format(new Date(res.submissionDate));
         parser.nextTextTag("submission_date_str");
         res.status = parser.nextTextTag("status");
         res.statusShort = shortStatusName.get(res.status);

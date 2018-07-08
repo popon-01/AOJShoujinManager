@@ -49,6 +49,7 @@ public class SubmitListActivity extends AppCompatActivity {
                     }
                 };
         listView.setOnItemClickListener(clickListener);
+
         updateChallenge();
     }
 
