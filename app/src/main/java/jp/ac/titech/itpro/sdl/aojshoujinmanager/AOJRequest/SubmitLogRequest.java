@@ -16,7 +16,6 @@ import java.util.Date;
 import java.util.HashMap;
 
 import jp.ac.titech.itpro.sdl.aojshoujinmanager.AOJData.SubmitInfo;
-import jp.ac.titech.itpro.sdl.aojshoujinmanager.LoginActivity;
 
 public class SubmitLogRequest extends AOJRequest{
 
@@ -24,6 +23,19 @@ public class SubmitLogRequest extends AOJRequest{
     private String problemID;
     private int start;
     private int limit;
+    private static final HashMap<String, String> shortStatusName =
+            new HashMap<String, String>() {
+                {
+                    put("Compile Error", "CE");
+                    put("Wrong Answer", "WA");
+                    put("Time Limit Exceeded", "TLE");
+                    put("Memory Limit Exceeded", "MLE");
+                    put("Accepted", "AC");
+                    put("Output Limit Exceeded", "OLE");
+                    put("Runtime Error", "RE");
+                    put("Presentation Error", "PE");
+                }
+            };
 
     public SubmitLogRequest(String userID){
         this.userID = userID;
@@ -47,6 +59,7 @@ public class SubmitLogRequest extends AOJRequest{
         return this;
     }
 
+
     private SubmitInfo parseStatus() throws IOException, XmlPullParserException {
         SubmitInfo res = new SubmitInfo();
 
@@ -57,6 +70,7 @@ public class SubmitLogRequest extends AOJRequest{
                 new Date(Long.parseLong(parser.nextTextTag("submission_date")));
         parser.nextTextTag("submission_date_str");
         res.status = parser.nextTextTag("status");
+        res.statusShort = shortStatusName.get(res.status);
         res.language = parser.nextTextTag("language");
         res.cpuTime = Integer.parseInt(parser.nextTextTag("cputime"));
         res.memory = Integer.parseInt(parser.nextTextTag("memory"));

@@ -7,17 +7,17 @@
     tools:context=".SubmitListActivity">
 
     <TextView
-        android:id="@+id/solvedProblemLabel"
+        android:id="@+id/submitProblemLabel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:textSize="24sp"
-        android:text="Solved Problem" />
+        android:text="@string/label_submit_problems" />
 
     <ListView
-        android:id="@+id/solvedProblemList"
+        android:id="@+id/submitProblemList"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        app:layout_constraintTop_toBottomOf="@id/solvedProblemLabel" />
+        app:layout_constraintTop_toBottomOf="@id/submitProblemLabel" />
 </android.support.constraint.ConstraintLayout>

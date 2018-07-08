@@ -10,6 +10,7 @@ public class SubmitInfo implements Serializable{
     public String problemID;
     public Date submissionDate;
     public String status;
+    public String statusShort;
     public String language;
     public int cpuTime;
     public int memory;
