@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="language_spinner_items">
+        <item>ALL</item>
+        <item>C</item>
+        <item>C++</item>
+        <item>JAVA</item>
+        <item>C++11</item>
+        <item>C++14</item>
+        <item>C#</item>
+        <item>D</item>
+        <item>Ruby</item>
+        <item>Python</item>
+        <item>Python3</item>
+        <item>PHP</item>
+        <item>JavaScript</item>
+        <item>Scala</item>
+        <item>Haskell</item>
+        <item>OCaml</item>
+        <item>Rust</item>
+        <item>Go</item>
+        <item>Kotlin</item>
+    </string-array>
+
+    <string-array name="status_spinner_items">
+        <item>ALL</item>
+        <item>AC</item>
+        <item>not AC</item>
+        <item>CE</item>
+        <item>WA</item>
+        <item>TLE</item>
+        <item>MLE</item>
+        <item>OLE</item>
+        <item>RE</item>
+        <item>PE</item>
+    </string-array>
+</resources>

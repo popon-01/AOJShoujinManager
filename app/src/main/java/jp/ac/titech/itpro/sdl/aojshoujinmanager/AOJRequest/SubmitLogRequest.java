@@ -35,7 +35,7 @@ public class SubmitLogRequest extends AOJRequest{
                     put("Accepted", "AC");
                     put("Output Limit Exceeded", "OLE");
                     put("Runtime Error", "RE");
-                    put("Presentation Error", "PE");
+                    put("WA: Presentation Error", "PE");
                 }
             };
 
@@ -76,6 +76,8 @@ public class SubmitLogRequest extends AOJRequest{
         parser.nextTextTag("submission_date_str");
         res.status = parser.nextTextTag("status");
         res.statusShort = shortStatusName.get(res.status);
+        if(res.statusShort == null)
+            res.statusShort = "---";
         res.language = parser.nextTextTag("language");
         res.cpuTime = Integer.parseInt(parser.nextTextTag("cputime"));
         res.memory = Integer.parseInt(parser.nextTextTag("memory"));
