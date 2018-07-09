@@ -1,5 +1,7 @@
 package jp.ac.titech.itpro.sdl.aojshoujinmanager;
 
+import android.util.Log;
+
 import java.io.Serializable;
 
 import jp.ac.titech.itpro.sdl.aojshoujinmanager.AOJData.SubmitInfo;
@@ -15,14 +17,19 @@ public class SubmitFilter implements Serializable{
         if(!language.equals("ALL") && !submit.language.equals(language))
             return false;
         if(!status.equals("ALL")){
-            if(status.equals("not AC") && submit.statusShort.equals("AC"))
-                return false;
-            else if(!submit.statusShort.equals(status))
-                return false;
+            if(status.equals("not AC")){
+                if(submit.statusShort.equals("AC")) {
+                    return false;
+                }
+            } else {
+                if(!submit.statusShort.equals(status)) {
+                    return false;
+                }
+            }
         }
         if(dateFrom != null && submit.submissionDate.compareTo(dateFrom) < 0)
             return false;
-        if(dateTo != null && submit.submissionDate.compareTo(dateTo) > 0)
+        if(dateTo != null && submit.submissionDate.compareTo(dateTo) >= 0)
             return false;
         return true;
     }

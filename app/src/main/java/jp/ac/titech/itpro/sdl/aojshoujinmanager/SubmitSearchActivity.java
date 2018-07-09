@@ -1,6 +1,7 @@
 package jp.ac.titech.itpro.sdl.aojshoujinmanager;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -127,6 +128,7 @@ public class SubmitSearchActivity extends AppCompatActivity {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                         dateTo.set(year, month, dayOfMonth);
+                        dateTo.add(Calendar.DAY_OF_MONTH, 1);
                         dateToCheckBox.setText(sdf.format(dateTo.getTime()));
                         dateToCheckBox.setChecked(true);
                         filter.dateTo = dateTo.getTimeInMillis();
@@ -143,13 +145,10 @@ public class SubmitSearchActivity extends AppCompatActivity {
             Toast.makeText(this, "Please input UserID", Toast.LENGTH_LONG).show();
             return;
         }
-        Log.d("SubmitSearch", userID);
-        Log.d("SubmitSearch", filter.language);
-        Log.d("SubmitSearch", filter.status);
-        Log.d("SubmitSearch",
-                filter.dateFrom == null ? "null" : sdf.format(dateFrom.getTime()));
-        Log.d("SubmitSearch",
-                filter.dateTo == null ? "null" : sdf.format(dateTo.getTime()));
+        Intent intent = new Intent(getApplication(), SubmitListActivity.class);
+        intent.putExtra(SubmitListActivity.EXTRA_FILTER, filter);
+        intent.putExtra(SubmitListActivity.EXTRA_USER_ID, userID);
+        startActivity(intent);
     }
 
     private class LanguageSpinnerListener implements AdapterView.OnItemSelectedListener {

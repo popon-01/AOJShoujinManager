@@ -16,24 +16,41 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.Locale;
 
 import jp.ac.titech.itpro.sdl.aojshoujinmanager.AOJData.ChallengeInfo;
+import jp.ac.titech.itpro.sdl.aojshoujinmanager.AOJData.SubmitInfo;
 
 public class SubmitListActivity extends AppCompatActivity {
-
+    private SubmitFilter filter;
+    private String userID;
+    private ArrayList<SubmitInfo> allSubmitList;
     private ArrayList<ChallengeInfo> challengeList;
     private ArrayAdapter<ChallengeInfo> listAdapter;
-    private TaskRequestChallenge currentTask;
+    private TextView loadProgressText;
+
+    public static final String EXTRA_FILTER = "filter";
+    public static final String EXTRA_USER_ID = "userID";
+    private static final String KEY_SAVED_LIST = "saved";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_submit_list);
 
+        Intent intent = getIntent();
+        this.filter =
+                (SubmitFilter) intent.getExtras().getSerializable(EXTRA_FILTER);
+        this.userID = intent.getStringExtra(EXTRA_USER_ID);
+        this.allSubmitList = new ArrayList<>();
         this.challengeList = new ArrayList<>();
 
+        loadProgressText = findViewById(R.id.loadProgressText);
+        loadProgressText.setVisibility(View.GONE);
         ListView listView = findViewById(R.id.submitProblemList);
+
         this.listAdapter = new SolvedProblemListAdapter(this,0,
                 new ArrayList<ChallengeInfo>());
         listView.setAdapter(listAdapter);
@@ -50,17 +67,34 @@ public class SubmitListActivity extends AppCompatActivity {
                 };
         listView.setOnItemClickListener(clickListener);
 
-        updateChallenge();
+        loadSubmitList();
     }
 
-    private void updateChallenge() {
-        if(currentTask != null && currentTask.getStatus() != AsyncTask.Status.FINISHED) {
-            currentTask.cancel(true);
-        }
+    private void loadSubmitList() {
+        allSubmitList.clear();
         challengeList.clear();
         listAdapter.clear();
-        currentTask = new TaskRequestChallenge(this, "Ashurnasirpal");
-        currentTask.execute();
+        loadProgressText.setText(String.format(Locale.US,
+                "Loading data : Load %d submits",0));
+        loadProgressText.setVisibility(View.VISIBLE);
+        new TaskRequestSubmits(this, userID).execute();
+    }
+
+    public void updateLoadProgress(int progress){
+        loadProgressText.setText(String.format(Locale.US,
+                "Loading data : Load %d submits",progress));
+    }
+
+    public void onFinishLoad(Collection<SubmitInfo> result){
+        loadProgressText.setVisibility(View.GONE);
+        allSubmitList.addAll(result);
+        startUpdateView();
+    }
+
+    private void startUpdateView(){
+        challengeList.clear();
+        listAdapter.clear();
+        new TaskGenChallenge(this, allSubmitList, filter).execute();
     }
 
     public void updateView(ChallengeInfo challenge) {
@@ -85,7 +119,8 @@ public class SubmitListActivity extends AppCompatActivity {
             ChallengeInfo challenge = getItem(pos);
             if (challenge != null) {
                 TextView titleText = view.findViewById(android.R.id.text1);
-                titleText.setText(challenge.problem.problemName);
+                titleText.setText(String.format("%s:%s",
+                        challenge.problem.problemID, challenge.problem.problemName));
             }
             return view;
         }
