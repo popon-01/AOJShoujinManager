@@ -2,7 +2,6 @@ package jp.ac.titech.itpro.sdl.aojshoujinmanager;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -15,6 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -33,7 +33,7 @@ public class SubmitListActivity extends AppCompatActivity {
 
     public static final String EXTRA_FILTER = "filter";
     public static final String EXTRA_USER_ID = "userID";
-    private static final String KEY_SAVED_LIST = "saved";
+    private static final String KEY_SAVED = "saved";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +67,16 @@ public class SubmitListActivity extends AppCompatActivity {
                 };
         listView.setOnItemClickListener(clickListener);
 
-        loadSubmitList();
+        if(savedInstanceState != null){
+            SavedState savedState =
+                    (SavedState) savedInstanceState.getSerializable(KEY_SAVED);
+            if(savedState != null){
+                allSubmitList = savedState.allSubmitList;
+                startUpdateView();
+            }
+        } else {
+            loadSubmitList();
+        }
     }
 
     private void loadSubmitList() {
@@ -101,6 +110,19 @@ public class SubmitListActivity extends AppCompatActivity {
         challengeList.add(challenge);
         listAdapter.add(challenge);
         listAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putSerializable(KEY_SAVED, new SavedState(allSubmitList));
+    }
+
+    private class SavedState implements Serializable {
+        public ArrayList<SubmitInfo> allSubmitList;
+        public SavedState(ArrayList<SubmitInfo> allSubmitList){
+            this.allSubmitList = allSubmitList;
+        }
     }
 
     private class SolvedProblemListAdapter extends ArrayAdapter<ChallengeInfo> {
