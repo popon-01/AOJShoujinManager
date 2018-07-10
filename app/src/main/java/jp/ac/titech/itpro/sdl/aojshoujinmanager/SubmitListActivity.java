@@ -185,9 +185,9 @@ public class SubmitListActivity extends AppCompatActivity {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                         dateFrom.set(year, month, dayOfMonth);
+                        filter.dateFrom = dateFrom.getTimeInMillis();
                         dateFromCheckBox.setText(sdf.format(dateFrom.getTime()));
                         dateFromCheckBox.setChecked(true);
-                        filter.dateFrom = dateFrom.getTimeInMillis();
                     }
                 },
                 dateFrom.get(Calendar.YEAR),
@@ -201,10 +201,11 @@ public class SubmitListActivity extends AppCompatActivity {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                         dateTo.set(year, month, dayOfMonth);
-                        dateToCheckBox.setText(sdf.format(dateTo.getTime()));
-                        dateToCheckBox.setChecked(true);
                         dateTo.add(Calendar.DAY_OF_MONTH, 1);
                         filter.dateTo = dateTo.getTimeInMillis();
+                        dateTo.add(Calendar.DAY_OF_MONTH, -1);
+                        dateToCheckBox.setText(sdf.format(dateTo.getTime()));
+                        dateToCheckBox.setChecked(true);
                     }
                 },
                 dateTo.get(Calendar.YEAR),
