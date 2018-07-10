@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SubmitDetailActivity">
+
+    <TextView
+        android:id="@+id/submitTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Submission #2440813"
+        android:textSize="32sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/submitTitle">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="@dimen/submit_table_key_weight"
+                android:text="@string/key_problem"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/submitProblem"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="@dimen/submit_table_value_weight"
+                android:text="3D Print"
+                android:textSize="20sp" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="@dimen/submit_table_key_weight"
+                android:text="@string/key_date"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/submitDate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="@dimen/submit_table_value_weight"
+                android:text="yyyy/MM/dd HH:mm:ss"
+                android:textSize="20sp" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="@dimen/submit_table_key_weight"
+                android:text="@string/key_language"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/submitLanguage"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="@dimen/submit_table_value_weight"
+                android:text="C++"
+                android:textSize="20sp" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="@dimen/submit_table_key_weight"
+                android:text="@string/key_status"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/submitStatus"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="@dimen/submit_table_value_weight"
+                android:text="Time Limit Exceeded"
+                android:textSize="20sp" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="@dimen/submit_table_key_weight"
+                android:text="@string/key_cpu_time"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/submitCPUTime"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="@dimen/submit_table_value_weight"
+                android:text="0.03 sec"
+                android:textSize="20sp" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="@dimen/submit_table_key_weight"
+                android:text="@string/key_memory"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/submitMemory"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="@dimen/submit_table_value_weight"
+                android:text="1333 KB"
+                android:textSize="20sp" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="@dimen/submit_table_key_weight"
+                android:text="@string/key_code_size"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/submitCodeSize"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="@dimen/submit_table_value_weight"
+                android:text="133 Bytes"
+                android:textSize="20sp" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="@dimen/submit_table_key_weight"
+                android:text="@string/key_detail_url"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/submitDetailURL"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="@dimen/submit_table_value_weight"
+                android:autoLink="web"
+                android:text="example.com"
+                android:textSize="20sp" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="@dimen/submit_table_key_weight"
+                android:text="@string/key_problem_url"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/submitURL"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="@dimen/submit_table_value_weight"
+                android:autoLink="web"
+                android:text="example.com"
+                android:textSize="20sp" />
+
+        </TableRow>
+
+    </TableLayout>
+
+</android.support.constraint.ConstraintLayout>
